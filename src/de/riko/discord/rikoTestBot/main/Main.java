@@ -1,6 +1,8 @@
-package de.riko.discord.rikoTestBot.manager;
+package de.riko.discord.rikoTestBot.main;
 
 import javax.security.auth.login.LoginException;
+
+import de.riko.discord.rikoTestBot.managers.BotManager;
 
 /**
  * Create a Discord-Bot.
@@ -8,7 +10,7 @@ import javax.security.auth.login.LoginException;
  * @author Henrik Möllmann
  * @version 1.0
  */
-public class BotMain {
+public class Main {
 	
 	/**
 	 * Creates a Discord-Bot and prints uncaught Exceptions to console.

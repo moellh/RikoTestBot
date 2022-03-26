@@ -1,4 +1,4 @@
-package de.riko.discord.rikoTestBot.manager;
+package de.riko.discord.rikoTestBot.managers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,16 +6,15 @@ import java.io.InputStreamReader;
 
 import javax.security.auth.login.LoginException;
 
-import de.riko.discord.rikoTestBot.commands.RikoTestBotCommandManager;
-import de.riko.discord.rikoTestBot.listener.CommandListener;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
 public class BotManager {
-
+	
 	private final ShardManager shardManager;
+	private final ChannelManager channelManager;
 	
 	/**
 	 * Starts a new Discord-Bot using Token and turns it online.
@@ -26,11 +25,12 @@ public class BotManager {
 	 * @throws IllegalArgumentException
 	 */
 	public BotManager(final String token) throws LoginException, IllegalArgumentException {
-		
 		final DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
 		shardManager = builder.build();
-		shardManager.addEventListener(new CommandListener(new RikoTestBotCommandManager()));
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> shutdown()));
+		shardManager.addEventListener(new CommandManager(this));
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> this.shutdown()));
+		
+		channelManager = new ChannelManager();
 		
 		shardManager.setActivity(Activity.playing("CS:GO MM Silver 1"));
 		shardManager.setStatus(OnlineStatus.ONLINE);
@@ -40,9 +40,9 @@ public class BotManager {
 	}
 	
 	/**
-	 * Creates a new Discord-Bot.
+	 * Creates and runs a new Bot. There can only be one running Bot.  
 	 * 
-	 * @param botName
+	 * @param token of Bot-Account
 	 * @throws LoginException
 	 * @throws IllegalArgumentException
 	 */
@@ -86,7 +86,10 @@ public class BotManager {
 			shardManager.shutdown();
 			System.out.println("Bot is Offline!");
 		}
-		
+	}
+	
+	public ChannelManager getChannelManager() {
+		return this.channelManager;
 	}
 	
 }

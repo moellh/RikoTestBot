@@ -1,4 +1,4 @@
-package de.riko.discord.rikoTestBot.dedicatedManagers;
+package de.riko.discord.rikoTestBot.managers;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.Set;
 import net.dv8tion.jda.api.entities.Channel;
 
 /**
- * Enables dedicated functionalities to certain Channels:
+ * Enables dedicated functionalities to certain Channels:<p>
  * - dedicated Bot-Channels work without Bot-Prefix
  * 
  * @author Henrik Möllmann
@@ -14,7 +14,7 @@ import net.dv8tion.jda.api.entities.Channel;
  */
 public class ChannelManager {
 
-	private static Set<Channel> prefixlessChannels = new HashSet<>();
+	private final Set<Channel> prefixlessChannels = new HashSet<>();
 	
 	/**
 	 * Returns a defaulPrefix depending on whether channel uses a prefix.
@@ -25,7 +25,7 @@ public class ChannelManager {
 	 * @param defaultPrefix
 	 * @return empty String or defaultPrefix
 	 */
-	public static String getChannelPrefix(final Channel channel, final String defaultPrefix) {
+	public String getChannelPrefix(final Channel channel, final String defaultPrefix) {
 		if(prefixlessChannels.contains(channel)) {
 			return "";
 		}
@@ -36,7 +36,7 @@ public class ChannelManager {
 	 * @param channel
 	 * @return true if channel is a prefixless Channel
 	 */
-	public static boolean isDedicatedBotChannel(final Channel channel) {
+	public boolean isDedicatedBotChannel(final Channel channel) {
 		return prefixlessChannels.contains(channel);
 	}
 	
@@ -46,7 +46,7 @@ public class ChannelManager {
 	 * 
 	 * @param addedChannel
 	 */
-	public static void removePrefixForChannel(final Channel addedChannel) {
+	public void removePrefixForChannel(final Channel addedChannel) {
 		prefixlessChannels.add(addedChannel);
 	}
 	
@@ -56,7 +56,7 @@ public class ChannelManager {
 	 * 
 	 * @param removedChannel
 	 */
-	public static void addPrefixForChannel(final Channel removedChannel) {
+	public void addPrefixForChannel(final Channel removedChannel) {
 		prefixlessChannels.remove(removedChannel);
 	}
 	
