@@ -3,13 +3,18 @@ Simple Discord-Bot "RikoTestBot" using Java + JDA. Meant for testing out JDA-API
 Requires Discord-Bot-Token as first Java-Argument.
 
 ## Commands
-Default command prefix is "!" (active by default)
-* help: prints all commands and its explainations
-* hi: responds with a welcome-message
-* removeprefix: commands now only work without prefix "!"
-* addprefix: commands now only work with prefix "!"
+Default command prefix is "!" (active for each text-channel by default)
+
+| command | description |
+| :------ | :---------- |
+| **help** | prints all commands and its explainations |
+| **hi** | responds with a welcome-message :) |
+| **removeprefix** | Bot interprets every chat-message of this text-channel as a command and reacts |
+| **addprefix** | commands now only work with prefix "!" in this text-channel |
 
 ## Console-Commands
-* exit: turns Bot offline immediately (not the program)
+| command | description |
+| :------ | :---------- |
+| **exit** | turns Bot offline immediately (program itself does not stop) |
 
-[View planned Feature-Ideas](https://riko2048.notion.site/Discord-Bot-fa2322e6fc1c4937a63e5cd273675f05 "Notion - DiscordBot")
+[View planned Feature-Ideas](https://moellh.notion.site/Discord-Bot-fa2322e6fc1c4937a63e5cd273675f05 "Notion - DiscordBot")
