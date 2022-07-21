@@ -16,5 +16,3 @@ Default command prefix is "!" (active for each text-channel by default)
 | command | description |
 | :------ | :---------- |
 | **exit** | turns Bot offline immediately (program itself does not stop) |
-
-[View planned Feature-Ideas](https://moellh.notion.site/Discord-Bot-fa2322e6fc1c4937a63e5cd273675f05 "Notion - DiscordBot")
